@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<ManagementDatabaseSettings>(builder.Configuration.GetSection(nameof(ManagementDatabaseSettings)));
 builder.Services.AddSingleton<IManagmentDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ManagementDatabaseSettings>>().Value);
 builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.GetValue<string>("ManagementDatabaseSettings:ConnectionString")));
-builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

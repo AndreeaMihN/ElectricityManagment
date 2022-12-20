@@ -2,7 +2,7 @@
 
 namespace ElectricityManagment.Services
 {
-    public interface IClientService
+    public interface IClientRepository
     {
         Task<List<Client>> GetAsync();
         Task<Client> GetAsync(string id);
@@ -11,4 +11,5 @@ namespace ElectricityManagment.Services
         Task RemoveAsync(string id);
     }
 }
+
 

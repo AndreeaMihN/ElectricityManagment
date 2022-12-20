@@ -10,24 +10,24 @@ namespace ElectricityManagment.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IClientService clientService;
+        private readonly IClientRepository clientRepository;
 
-        public ClientsController(IClientService clientService)
+        public ClientsController(IClientRepository clientRepository)
         {
-            this.clientService = clientService;
+            this.clientRepository = clientRepository;
         }
         // GET: api/<ClientsController>
         [HttpGet]
         public async Task<List<Client>> Get()
         {
-            return await clientService.GetAsync();
+            return await clientRepository.GetAsync();
         }
 
         // GET api/<ClientsController>/5
         [HttpGet("{id}")]
         public async Task<Client> Get(string id)
         {
-            var client = await clientService.GetAsync(id);
+            var client = await clientRepository.GetAsync(id);
             return client;
         }
 
@@ -35,7 +35,7 @@ namespace ElectricityManagment.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Client client)
         {
-            await clientService.CreateAsync(client);
+            await clientRepository.CreateAsync(client);
             return CreatedAtAction(nameof(Get), new { id = client.Id }, client);
         }
 
@@ -43,12 +43,13 @@ namespace ElectricityManagment.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Client client)
         {
-            var existingClient = await clientService.GetAsync(client.Id);
+            if(client.Id == null) throw new ArgumentNullException(nameof(client.Id));
+            var existingClient = await clientRepository.GetAsync(client.Id);
             if (existingClient == null)
             {
                 return NotFound($"Client with Id = {client.Id} not found");
             }
-            await clientService.UpdateAsync(client);
+            await clientRepository.UpdateAsync(client);
             return NoContent();
         }
 
@@ -56,12 +57,13 @@ namespace ElectricityManagment.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var client = await clientService.GetAsync(id);
+            var client = await clientRepository.GetAsync(id);
             if (client == null)
             {
                 return NotFound($"Client with Id = {id} not found");
             }
-            await clientService.RemoveAsync(client.Id);
+            if (client.Id == null) throw new ArgumentNullException(nameof(client.Id));
+            await clientRepository.RemoveAsync(client.Id);
             return Ok($"Client with Id = {id} deleted");
         }
     }

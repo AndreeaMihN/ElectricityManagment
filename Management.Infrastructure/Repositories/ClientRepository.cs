@@ -4,11 +4,11 @@ using MongoDB.Driver;
 
 namespace ElectricityManagment.Services
 {
-    public class ClientService : IClientService
+    public class ClientRepository : IClientRepository
     {
         private readonly IMongoCollection<Client> _clients;
 
-        public ClientService(IManagmentDatabaseSettings settings, IMongoClient mongoClient)
+        public ClientRepository(IManagmentDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _clients = database.GetCollection<Client>(settings.ClientCollectionName);
@@ -26,7 +26,7 @@ namespace ElectricityManagment.Services
         }
 
         public async Task<Client> GetAsync(string id)
-        {
+        { 
             return await _clients.Find(client => client.Id == id).FirstOrDefaultAsync();
         }
 
