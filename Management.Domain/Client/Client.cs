@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ElectricityManagment.Models
+namespace Management.Domain.Client
 {
     [BsonIgnoreExtraElements]
     public class Client
