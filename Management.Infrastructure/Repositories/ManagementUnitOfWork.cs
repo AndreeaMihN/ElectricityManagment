@@ -1,4 +1,4 @@
-using Management.Domain.Client;
+using Management.Domain.Clients;
 using Management.Domain.Repositories;
 
 namespace Management.Infrastructure.Repositories

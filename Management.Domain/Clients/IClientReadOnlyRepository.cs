@@ -1,4 +1,4 @@
-﻿namespace Management.Domain.Client
+﻿namespace Management.Domain.Clients
 {
     public interface IClientReadOnlyRepository
     {

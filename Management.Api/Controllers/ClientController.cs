@@ -1,5 +1,6 @@
-﻿using Management.Models;
-using Management.Services;
+﻿using Management.Api.Controllers;
+using Management.Application.Features.Clients.Commands.CreateClient;
+using Management.Domain.Clients;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,11 +11,11 @@ namespace Management.Controllers
     [ApiController]
     public class ClientController : BaseController
     {
-        private readonly IClientRepository clientRepository;
+        private readonly IClientCommandRepository clientCommandRepository;
 
-        public ClientController(IClientRepository clientRepository)
+        public ClientController(IClientCommandRepository clientCommandRepository)
         {
-            this.clientRepository = clientRepository;
+            this.clientCommandRepository = clientCommandRepository;
         }
         //// GET: api/<ClientsController>
         //[HttpGet]
@@ -32,11 +33,11 @@ namespace Management.Controllers
         //}
 
         [HttpPost]
-        public async Task<IActionResult> CreateClient([FromBody] CreateClientDto client)
+        public async Task<IActionResult> CreateClient([FromBody] CreateClientDto createClientDto)
         {
             var result = await Mediator.Send(new CreateClientCommand
             {
-                CreateClientDto = new CreateClientDto(createCLientDto)
+                CreateClientDto = new CreateClientDto(createClientDto)
             });
 
             return Ok(result);

@@ -1,8 +1,9 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Management.Infrastructure.Contexts;
+using Management.Domain.Clients;
 
-namespace Management.Infrastruncture.Domain.Client
+namespace Management.Infrastruncture.Domain.Clients
 {
 	public class ClientReadOnlyRepository : IClientReadOnlyRepository
     {

@@ -1,4 +1,5 @@
-﻿using Management.Domain.Client;
+﻿using Management.Domain.Clients;
+
 namespace Management.Domain.Repositories
 {
     public interface IManagementUnitOfWork

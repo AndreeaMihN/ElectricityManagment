@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
-using System.Text.Json;
+﻿using Management.Application.Exceptions;
+using Management.Application.ResponseModel;
 using System.Net;
-using Blog.Service.BlogApi.Application.ResponseModels;
-using Blog.Service.BlogApi.Application.Exceptions;
+using System.Text.Json;
 
 namespace Management.Api.Middlewares
 {

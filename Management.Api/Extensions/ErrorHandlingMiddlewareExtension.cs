@@ -1,5 +1,4 @@
-﻿using Blog.Service.BlogApi.Api.Middlewares;
-using Microsoft.AspNetCore.Builder;
+﻿using Management.Api.Middlewares;
 
 namespace Management.Api.Extensions
 {

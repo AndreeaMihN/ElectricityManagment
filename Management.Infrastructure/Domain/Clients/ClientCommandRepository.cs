@@ -1,8 +1,8 @@
-﻿using Management.Domain.Client;
+﻿using Management.Domain.Clients;
 using Management.Infrastructure.Contexts;
 using MongoDB.Driver;
 
-namespace Management.Infrastructure.Domain.Client
+namespace Management.Infrastructure.Domain.Clients
 {
     public class ClientCommandRepository : IClientCommandRepository
     {
@@ -11,8 +11,8 @@ namespace Management.Infrastructure.Domain.Client
         public ClientCommandRepository(IClientContext context)
         {
             _context = context;
-
         }
+
         public async Task<Client> CreateAsync(Client client)
         {
             if (client == null) throw new ArgumentNullException("client");

@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using Management.Application.Features.Client.Commands.CreateClient;
+using Management.Domain.Clients;
 using Management.Domain.Repositories;
-using Management.Domain.Client;
 using MediatR;
 
-namespace Management.Application.Client.Commands.CreateClient
+namespace Management.Application.Features.Clients.Commands.CreateClient
 {
 
     public class CreateClientHandler : IRequestHandler<CreateClientCommand, bool>
@@ -24,11 +23,11 @@ namespace Management.Application.Client.Commands.CreateClient
             entity.IsActive = false;
             try
             {
-                _clientUnitOfWork.ClientCommandRepository.Create(entity);
+                await _clientUnitOfWork.ClientCommandRepository.CreateAsync(entity);
             }
             catch
             {
-                throw new Exception.ApplicationException("Failed to add a new client");
+                throw new Exceptions.ApplicationException("Failed to add a new client");
             }
 
             return true;

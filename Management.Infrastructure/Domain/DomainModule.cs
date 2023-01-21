@@ -1,9 +1,9 @@
 using Autofac;
-using Management.Infrastruncture.Domain.Client;
+using Management.Domain.Clients;
 using Management.Domain.Repositories;
-using Management.Domain.Client;
+using Management.Infrastructure.Domain.Clients;
 using Management.Infrastructure.Repositories;
-using Management.Infrastructure.Domain.Client;
+using Management.Infrastruncture.Domain.Clients;
 
 namespace Management.Infrastructure.Domain
 {

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Management.Domain.Client;
-using System.Collections.Generic;
+using Management.Domain.Clients;
 
-namespace Management.Application.Features.Client.Commands.CreateClient
+namespace Management.Application.Features.Clients.Commands.CreateClient
 {
     [AutoMap(typeof(Client), ReverseMap = true)]
     public class CreateClientDto

@@ -1,7 +1,7 @@
 using Management.Models;
-using Management.Domain.Client;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
+using Management.Domain.Clients;
 
 namespace Management.Infrastructure.Contexts
 {
