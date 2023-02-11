@@ -6,7 +6,7 @@ using MediatR;
 namespace Management.Application.Features.Clients.Commands.CreateClient
 {
 
-    public class CreateClientHandler : IRequestHandler<CreateClientCommand, bool>
+    public class CreateClientHandler : IRequestHandler<CreateClientCommand, Client>
     {
         private readonly IManagementUnitOfWork _clientUnitOfWork;
         private readonly IMapper _mapper;
@@ -17,20 +17,18 @@ namespace Management.Application.Features.Clients.Commands.CreateClient
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+        public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
         {
             Client entity = _mapper.Map<Client>(request.CreateClientDto);
             entity.IsActive = false;
             try
             {
-                await _clientUnitOfWork.ClientCommandRepository.CreateAsync(entity);
+                return await _clientUnitOfWork.ClientCommandRepository.CreateAsync(entity);
             }
             catch
             {
                 throw new Exceptions.ApplicationException("Failed to add a new client");
             }
-
-            return true;
         }
     }
 }
