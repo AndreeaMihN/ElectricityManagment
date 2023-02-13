@@ -15,8 +15,15 @@ namespace Management.Infrastructure.Domain.Clients
 
         public async Task CreateAsync(Client client)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            await _context.Clients.InsertOneAsync(client);
+            try
+            {
+                if (client == null) throw new ArgumentNullException("client");
+                await _context.Clients.InsertOneAsync(client);
+            }
+            catch (Exception ex)
+            {
+                var exception = ex;
+            }
         }
 
         public async Task RemoveAsync(string id)

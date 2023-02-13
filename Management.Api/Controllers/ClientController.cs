@@ -20,6 +20,7 @@ namespace Management.Controllers
             _clientCommandRepository = clientCommandRepository;
             _mediator = mediator;
         }
+
         //// GET: api/<ClientsController>
         //[HttpGet]
         //public async Task<List<Client>> Get()
@@ -36,12 +37,12 @@ namespace Management.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult> CreateClient([FromBody] Client client)
+        public async Task<ActionResult> CreateClient([FromBody] CreateClientDto createClientDto)
         {
             //var result = await _mediator.Send(new CreateClientCommand(client));
-            await _mediator.Send(new CreateClientCommand(client));
+            var result = await _mediator.Send(new CreateClientCommand(createClientDto));
 
-            return Ok(201);
+            return Ok(result);
         }
 
         // PUT api/<ClientsController>/5

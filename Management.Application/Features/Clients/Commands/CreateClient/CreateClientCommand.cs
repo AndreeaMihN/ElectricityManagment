@@ -3,5 +3,5 @@ using MediatR;
 
 namespace Management.Application.Features.Clients.Commands.CreateClient
 {
-    public record CreateClientCommand(Client Client) : IRequest<Client>;
+    public record CreateClientCommand(CreateClientDto createClientDto) : IRequest<bool>;
 }
