@@ -1,3 +1,4 @@
+using Autofac.Core;
 using FluentValidation;
 using Management.Application.Features.Clients.Commands.CreateClient;
 using Management.Domain.Clients;
@@ -8,7 +9,9 @@ using Management.Infrastructure.Repositories;
 using Management.Infrastruncture.Domain.Clients;
 using Management.Models;
 using MediatR;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +43,23 @@ builder.Services.AddAutoMapper(cfg =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Bills Management API",
+        Description = "Bills Management API"
+    });
+    options.ExampleFilters();
+    options.EnableAnnotations();
+    options.IgnoreObsoleteActions();
+    options.CustomSchemaIds(x => x.FullName);
+});
+
+builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
+
+
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 
