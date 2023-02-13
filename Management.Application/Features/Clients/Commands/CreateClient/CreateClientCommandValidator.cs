@@ -6,17 +6,17 @@ namespace Management.Application.Features.Clients.Commands.CreateClient
     {
         public CreateClientCommandValidator()
         {
-            RuleFor(model => model.CreateClientDto.FirstName)
+            RuleFor(model => model.Client.FirstName)
                 .Cascade(CascadeMode.Stop)
                 .NotNull().WithMessage("Please ensure you have entered 'FirstName' field")
                 .NotEmpty().WithMessage("Content field shouldn't be empty");
 
-            RuleFor(model => model.CreateClientDto.LastName)
+            RuleFor(model => model.Client.LastName)
                 .Cascade(CascadeMode.Stop)
                 .NotNull().WithMessage("Please ensure you have entered 'LastName' field")
                 .NotEmpty().WithMessage("Content field shouldn't be empty");
 
-            RuleFor(model => model.CreateClientDto.PersonalIdentificationNumber)
+            RuleFor(model => model.Client.PersonalIdentificationNumber)
                 .Cascade(CascadeMode.Stop)
                 .NotNull().WithMessage("Please ensure you have entered 'PersonalIdentificationNumber' field")
                 .NotEmpty().WithMessage("Content field shouldn't be empty");

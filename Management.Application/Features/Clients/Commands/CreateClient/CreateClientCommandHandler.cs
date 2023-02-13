@@ -19,16 +19,18 @@ namespace Management.Application.Features.Clients.Commands.CreateClient
 
         public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
         {
-            Client entity = _mapper.Map<Client>(request.CreateClientDto);
+            Client entity = _mapper.Map<Client>(request.Client);
             entity.IsActive = false;
             try
             {
-                return await _clientUnitOfWork.ClientCommandRepository.CreateAsync(entity);
+                await _clientUnitOfWork.ClientCommandRepository.CreateAsync(entity);
             }
             catch
             {
                 throw new Exceptions.ApplicationException("Failed to add a new client");
             }
+
+            return request.Client;
         }
     }
 }

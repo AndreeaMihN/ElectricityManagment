@@ -13,11 +13,10 @@ namespace Management.Infrastructure.Domain.Clients
             _context = context;
         }
 
-        public async Task<Client> CreateAsync(Client client)
+        public async Task CreateAsync(Client client)
         {
             if (client == null) throw new ArgumentNullException("client");
             await _context.Clients.InsertOneAsync(client);
-            return client;
         }
 
         public async Task RemoveAsync(string id)

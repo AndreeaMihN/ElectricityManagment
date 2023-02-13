@@ -1,7 +1,7 @@
-using Management.Models;
-using MongoDB.Driver;
-using Microsoft.Extensions.Options;
 using Management.Domain.Clients;
+using Management.Models;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace Management.Infrastructure.Contexts
 {
@@ -18,6 +18,6 @@ namespace Management.Infrastructure.Contexts
             var client = new MongoClient(options.Value.ConnectionString);
             db = client.GetDatabase(options.Value.Database);
         }
-        public IMongoCollection<Client> Clients => db.GetCollection<Client>("Clients");
+        public IMongoCollection<Client> Clients => db.GetCollection<Client>("Client");
     }
 }

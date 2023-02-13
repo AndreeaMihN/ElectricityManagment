@@ -36,14 +36,12 @@ namespace Management.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult> CreateClient([FromBody] CreateClientDto createClientDto)
+        public async Task<ActionResult> CreateClient([FromBody] Client client)
         {
-            var result = await _mediator.Send(new CreateClientCommand
-            {
-                CreateClientDto = new CreateClientDto(createClientDto)
-            });
+            //var result = await _mediator.Send(new CreateClientCommand(client));
+            await _mediator.Send(new CreateClientCommand(client));
 
-            return Ok(result);
+            return Ok(201);
         }
 
         // PUT api/<ClientsController>/5
